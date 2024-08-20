@@ -5,15 +5,23 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"io"
 	"os"
 )
 
-// Считает количество слов в переданном ридере.
-func count(r io.Reader) int {
+/*
+Считает количество слов или строк в переданном ридере.
+	- countLines: считать строки, если true
+*/
+func count(r io.Reader, countLines bool) int {
 	scanner := bufio.NewScanner(r)
-	scanner.Split(bufio.ScanWords)
+
+	// Default behavior for Split() is split by lines
+	if !countLines {
+		scanner.Split(bufio.ScanWords)
+	}
 
 	wc := 0
 
@@ -25,6 +33,9 @@ func count(r io.Reader) int {
 }
 
 func main() {
-	result := count(os.Stdin)
+	linesFlag := flag.Bool("l", false, "Count lines")
+	flag.Parse()
+
+	result := count(os.Stdin, *linesFlag)
 	fmt.Println(result)
 }
