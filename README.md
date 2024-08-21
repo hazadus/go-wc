@@ -24,9 +24,5 @@ cat main.go | ./go-wc -b
 ## Запуск тестов
 
 ```bash
-make test
-
-# или:
-go build
 go test -v
 ```
