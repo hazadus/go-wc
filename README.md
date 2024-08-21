@@ -1,6 +1,6 @@
 # go-wc
 
-CLI tool для подсчёта слов или строк в инпуте из stdin.
+CLI tool для подсчёта строк, слов или байтов в инпуте из stdin.
 
 ## Сборка
 
@@ -16,11 +16,17 @@ cat main.go | ./go-wc
 
 # Считать строки
 cat main.go | ./go-wc -l
+
+# Считать байты
+cat main.go | ./go-wc -b
 ```
 
 ## Запуск тестов
 
 ```bash
+make test
+
+# или:
 go build
 go test -v
 ```
